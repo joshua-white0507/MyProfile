@@ -1,20 +1,23 @@
-<h1>New Entry</h1>
-<%= form_with(model: @user) do |form| %>
- <div class='container-fluid'>
-   <%= form.label :name %>
-   <%= form.text_field :name %>
- </div>
- <div>
- <%= form.label :practice %>
- <%= form.text_field :practice %>
-</div>
- <div>
-   <%= form.submit %>
- </div>
-<% end %>
+<div class='container'>
+  <h1 class='text-center mb-4'>New Entry</h1>
 
-<br>
+  <%= form_with(model: @user, class: 'mb-4') do |form| %>
+    <div class='mb-3'>
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
 
-<div>
- <%= link_to "Back to home", root_path %>
+    <div class='mb-3'>
+      <%= form.label :practice, class: 'form-label' %>
+      <%= form.text_field :practice, class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= link_to "Back to home", root_path, class: 'btn btn-secondary' %>
+  </div>
 </div>
