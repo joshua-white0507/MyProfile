@@ -1,0 +1,20 @@
+<h1>New Entry</h1>
+<%= form_with(model: @user) do |form| %>
+ <div class='container-fluid'>
+   <%= form.label :name %>
+   <%= form.text_field :name %>
+ </div>
+ <div>
+ <%= form.label :practice %>
+ <%= form.text_field :practice %>
+</div>
+ <div>
+   <%= form.submit %>
+ </div>
+<% end %>
+
+<br>
+
+<div>
+ <%= link_to "Back to home", root_path %>
+</div>
