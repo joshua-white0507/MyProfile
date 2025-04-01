@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   # Set the root route
   devise_scope :user do
-    root to: "devise/sessions#new" # Ensure this is correct
+    root to: "devise/sessions#new"
   end
 
   # Define the index route for users
-  resources :users, only: [:index, :create, :new, :destroy]
+  resources :users, only: [:index, :create, :show, :new, :destroy]
 end
