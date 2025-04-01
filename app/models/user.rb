@@ -5,8 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-    validates :password, confirmation: true
-    validates :email, presence: true, uniqueness: true
-    validates :experience, length: { maximum: 1000 }, allow_blank: true
-    validates :interest, presence: true
+validates :password, confirmation: true
+validates :email, presence: true, uniqueness: true
+validates :experience, length: { maximum: 1000 }, allow_blank: true
+
+attribute :skills, :json, default: []
+
 end

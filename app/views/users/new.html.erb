@@ -12,22 +12,23 @@
       <%= form.text_field :practice, class: 'form-control' %>
     </div>
 
-    <%= form.label :email, class: "form-label mt-3" %>
-    <%= form.email_field :email, class: "form-control border-danger input-size", required: true %>
-
-
-    <%= form.label :password, class: "form-label mt-3" %>
-          <%= form.password_field :password, class: "form-control border-danger input-size", required: true %>
-          <%= form.label :password_confirmation, class: "form-label mt-3" %>
-          <%= form.password_field :password_confirmation, class: "form-control border-danger input-size", required: true %>
-
     <%= form.label :experience, class: "form-label mt-3" %>
     <%= form.text_area :experience, class: "form-control input-size", rows: 5 %>
 
     <div class='mb-3'>
-      <%= form.label :interest, "Select your interest", class: 'form-label mt-3' %>
+      <%= form.label :interest, text: "Select your interest", class: 'form-label mt-3' %>
       <%= form.select :interest, options_for_select(['Construction', 'Healthcare', 'Education', 'Manufacturing', 'Entertainment', 'Retail', 'Financial services', 'Other',]), { prompt: 'Choose an interest' }, class: 'form-control' %>
     </div>
+
+    <div class='mb-3'>
+    <%= form.label :skills, "Select your skills", class: 'form-label' %>
+    <% ['Ruby', 'JavaScript', 'Python', 'Java', 'C++', 'HTML', 'CSS', 'SQL'].each do |skill| %>
+      <div class="form-check">
+        <%= form.check_box :skills, { multiple: true, class: 'form-check-input' }, skill, nil %>
+        <%= form.label :skills, skill, class: 'form-check-label' %>
+      </div>
+    <% end %>
+</div>
 
     <div>
       <%= form.submit class: 'btn btn-primary' %>
