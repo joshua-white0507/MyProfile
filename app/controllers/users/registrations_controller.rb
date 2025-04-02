@@ -8,11 +8,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # Permit additional parameters for sign-up
   def sign_up_params
-    params.require(:user).permit(:email, :name, :password, :password_confirmation, :interest, :practice, :experience, skills: [])
+    params.require(:user).permit(:email, :name, :password, :password_confirmation, :interest, :practice, :profile_photo, :experience, skills: [])
   end
 
   # Permit additional parameters for account update
   def account_update_params
-    params.require(:user).permit(:email, :name, :password, :password_confirmation, :current_password, :interest, :practice, :experience, skills: [])
+    params.require(:user).permit(:email, :name, :password, :password_confirmation, :current_password, :interest, :practice, :profile_photo, :experience, skills: [])
   end
 end
