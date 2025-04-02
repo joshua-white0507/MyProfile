@@ -42,6 +42,11 @@
           <%= f.select :practice, options_for_select(['Business Consulting', 'Technology Consulting', 'Design Practice', 'Delivery Consulting', 'Service Centre', 'Quality Engineering', 'Operations and Finance', 'Software Engingeering', 'Other']), { prompt: 'Choose an practice' }, class: 'form-control' %>
         </div>
 
+        <div class="field">
+          <%= f.label :grade, "Select Grade", class: 'form-label' %>
+         <%= f.select :grade, (0..9).to_a %>
+         </div>
+
         <%= f.label :experience, class: "form-label mt-3" %>
         <%= f.text_area :experience, class: "form-control input-size", rows: 5 %>
 
@@ -49,6 +54,8 @@
           <%= f.label :interest, "Select your interest", class: 'form-label mt-3' %>
           <%= f.select :interest, options_for_select(['Construction', 'Healthcare', 'Education', 'Manufacturing', 'Entertainment', 'Retail', 'Financial services', 'Other']), { prompt: 'Choose an interest' }, class: 'form-control' %>
         </div>
+
+
 
         <div class='mb-3'>
           <%= f.label :skills, "Select your skills", class: 'form-label' %>
@@ -58,6 +65,18 @@
               <%= f.label :skills, skill, class: 'form-check-label' %>
             </div>
           <% end %>
+        </div>
+
+        <div class='mb-3'>
+          <%= f.label :bench, "Are you currently on the bench?", class: 'form-label mt-3' %>
+          <div class="form-check">
+         <%= f.radio_button :bench, true, class: 'form-check-input', id: 'bench_yes' %>
+         <%= f.label :bench_yes, "Yes", class: 'form-check-label' %>
+          </div>
+        <div class="form-check">
+         <%= f.radio_button :bench, false, class: 'form-check-input', id: 'bench_no' %>
+         <%= f.label :bench_no, "No", class: 'form-check-label' %>
+        </div>
         </div>
 
         <div class="actions mt-4 d-grid">

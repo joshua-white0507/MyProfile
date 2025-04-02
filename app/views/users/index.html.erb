@@ -6,6 +6,7 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
+        <th>Bench Status</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -14,6 +15,7 @@
         <tr>
           <td><%= user.name || 'No name provided' %></td>
           <td><%= user.email %></td>
+          <td><%= user.bench ? '🚩' : '' %></td>
           <td>
             <%= link_to "View Profile", user_path(user), class: 'btn btn-primary btn-sm' %>
           </td>
