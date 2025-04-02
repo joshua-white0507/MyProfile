@@ -12,9 +12,11 @@
       <h5 class="card-title"><%= @user.name || 'No name provided' %></h5>
       <p class="card-text"><strong>Email:</strong> <%= @user.email %></p>
       <p class="card-text"><strong>Practice:</strong> <%= @user.practice %></p>
+      <p class="card-text"><strong>Grade:</strong> <%= @user.grade %></p>
       <p class="card-text"><strong>Skills:</strong> <%= @user.skills&.join(', ') || 'No skills listed' %></p>
       <p class="card-text"><strong>Interest:</strong> <%= @user.interest || 'No interest provided' %></p>
       <p class="card-text"><strong>Experience:</strong> <%= @user.experience || 'No experience provided' %></p>
+      <p class="card-text"><strong>Bench:</strong> <%= @user.bench ? 'Currently on bench' : 'Not on bench' %></p>
     </div>
   </div>
 
