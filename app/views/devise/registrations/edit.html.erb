@@ -32,8 +32,6 @@
           <%= f.select :grade, options_for_select((0..9).to_a, resource.grade), {}, class: 'form-control' %>
         </div>
 
-       
-
         <%= f.label :experience, class: "form-label mt-3" %>
         <%= f.text_area :experience, class: "form-control input-size", rows: 5 %>
 
@@ -42,27 +40,46 @@
           <%= f.select :interest, options_for_select(['Construction', 'Healthcare', 'Education', 'Manufacturing', 'Entertainment', 'Retail', 'Financial services', 'Other'], resource.interest), { prompt: 'Choose an interest' }, class: 'form-control' %>
         </div>
 
-        <div class='mb-3'>
-          <%= f.label :skills, "Select your skills", class: 'form-label' %>
-          <% ['Ruby', 'JavaScript', 'Python', 'Java', 'C++', 'HTML', 'CSS', 'SQL'].each do |skill| %>
-            <div class="form-check">
-              <%= f.check_box :skills, { multiple: true, class: 'form-check-input' }, skill, nil %>
-              <%= f.label :skills, skill, class: 'form-check-label' %>
+        <!-- Skills Section -->
+        <div class="row">
+          <!-- Technical Skills -->
+          <div class="col-md-6">
+            <div class='mb-3'>
+              <%= f.label :technical_skills, "Select your Technical Skills", class: 'form-label' %>
+              <% ['Ruby', 'JavaScript', 'Python', 'Java', 'C++', 'HTML', 'CSS', 'SQL'].each do |skill| %>
+                <div class="form-check">
+                  <%= f.check_box :skills, { multiple: true, class: 'form-check-input' }, skill, nil %>
+                  <%= f.label :skills, skill, class: 'form-check-label' %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
+          </div>
+
+          <!-- Soft Skills -->
+          <div class="col-md-6">
+            <div class='mb-3'>
+              <%= f.label :soft_skills, "Select your Soft Skills", class: 'form-label' %>
+              <% ['Presentations', 'Stakeholder Management', 'Team Leadership', 'Time Management', 'Problem Solving'].each do |skill| %>
+                <div class="form-check">
+                  <%= f.check_box :skills, { multiple: true, class: 'form-check-input' }, skill, nil %>
+                  <%= f.label :skills, skill, class: 'form-check-label' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
 
         <div class="mb-3">
-        <%= f.label :bench, "Are you currently on the bench?", class: 'form-label mt-3' %>
-        <div class="form-check">
-          <%= f.radio_button :bench, true, class: 'form-check-input', id: 'bench_yes' %>
-          <%= f.label :bench_yes, "Yes", class: 'form-check-label' %>
+          <%= f.label :bench, "Are you currently on the bench?", class: 'form-label mt-3' %>
+          <div class="form-check">
+            <%= f.radio_button :bench, true, class: 'form-check-input', id: 'bench_yes' %>
+            <%= f.label :bench_yes, "Yes", class: 'form-check-label' %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :bench, false, class: 'form-check-input', id: 'bench_no' %>
+            <%= f.label :bench_no, "No", class: 'form-check-label' %>
+          </div>
         </div>
-        <div class="form-check">
-          <%= f.radio_button :bench, false, class: 'form-check-input', id: 'bench_no' %>
-          <%= f.label :bench_no, "No", class: 'form-check-label' %>
-        </div>
-      </div>
 
         <div class="mb-3">
           <%= f.label :password, class: 'form-label' %>
