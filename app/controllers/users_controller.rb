@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
       
-
+  def index
+    if params[:query].present?
+      query = "%#{params[:query]}%"
+      @users = User.where("interest ILIKE ? OR skills::text ILIKE ?", query, query)
+    else
+      @users = User.all
+    end
+  end
 
     # GET /users
     # GET /users.json
-
-    def index
-        @users = User.all
-    end
 
     def show
       @user = User.find(params[:id])

@@ -1,6 +1,15 @@
 <div class='container'>
   <h1 class='text-center mb-4'>All Users</h1>
 
+  <!-- Search Form -->
+  <div class="mb-4">
+    <%= form_with url: users_path, method: :get, local: true, class: "d-flex" do |f| %>
+      <%= f.text_field :query, placeholder: "Search by interests or skills", class: "form-control me-2" %>
+      <%= f.submit "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+
   <table class="table">
     <thead>
       <tr>
