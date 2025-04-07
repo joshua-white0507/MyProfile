@@ -1,78 +1,75 @@
-<div class="container mt-5">
+<div class="container mt-5" style="background-color: #EEEEEE; padding: 20px; border-radius: 8px;">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
 
-      <h2 class="text-center mb-4">Edit Profile</h2>
+      <h2 class="text-center mb-4" style="color: #23548F;">Edit Profile</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class='mb-3'>
-          <%= f.label :profile_photo, "Update Profile Photo", class: 'form-label fw-bold' %>
+          <%= f.label :profile_photo, "Update Profile Photo", class: 'form-label fw-bold', style: 'color: #434343;' %>
           <%= f.file_field :profile_photo, class: 'form-control' %>
         </div>
 
         <div class='mb-3'>
-          <%= f.label :name, class: 'form-label fw-bold' %>
+          <%= f.label :name, class: 'form-label fw-bold', style: 'color: #434343;' %>
           <%= f.text_field :name, class: 'form-control' %>
         </div>
 
         <div class='mb-3'>
-          <%= f.label :email, class: 'form-label fw-bold' %>
+          <%= f.label :email, class: 'form-label fw-bold', style: 'color: #434343;' %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
         </div>
 
         <div class='mb-3'>
-          <%= f.label :practice, "Practice", class: 'form-label fw-bold mt-3' %>
+          <%= f.label :practice, "Practice", class: 'form-label fw-bold mt-3', style: 'color: #434343;' %>
           <%= f.select :practice, options_for_select(['Business Consulting', 'Technology Consulting', 'Design Practice', 'Delivery Consulting', 'Service Centre', 'Quality Engineering', 'Operations and Finance', 'Software Engingeering', 'Other']), { prompt: 'Choose a practice' }, class: 'form-control' %>
         </div>
 
         <div class="mb-3">
-          <%= f.label :grade, "Select Grade", class: 'form-label fw-bold' %>
+          <%= f.label :grade, "Select Grade", class: 'form-label fw-bold', style: 'color: #434343;' %>
           <%= f.select :grade, options_for_select((0..9).to_a, resource.grade), {}, class: 'form-control' %>
         </div>
         
         <div class='mb-3'>
-  <%= f.label :previous_clients, "Select Previous Clients", class: 'form-label fw-bold' %>
-  <% ['Mitsubishi', 'Barclays', 'Santander', 'Westfield', 'FIFA', 'F1', 'NHS', 'British Museum', 'Other'].each do |client| %>
-    <div class="form-check">
-      <%= f.check_box :previous_clients, { multiple: true, class: 'form-check-input' }, client, nil %>
-      <%= f.label :previous_clients, client, class: 'form-check-label' %>
-    </div>
-  <% end %>
-</div>
+          <%= f.label :previous_clients, "Select Previous Clients", class: 'form-label fw-bold', style: 'color: #434343;' %>
+          <% ['Mitsubishi', 'Barclays', 'Santander', 'Westfield', 'FIFA', 'F1', 'NHS', 'British Museum', 'Other'].each do |client| %>
+            <div class="form-check">
+              <%= f.check_box :previous_clients, { multiple: true, class: 'form-check-input' }, client, nil %>
+              <%= f.label :previous_clients, client, class: 'form-check-label', style: 'color: #434343;' %>
+            </div>
+          <% end %>
+        </div>
         
-        <%= f.label :experience, class: "form-label fw-bold mt-3" %>
+        <%= f.label :experience, class: "form-label fw-bold mt-3", style: 'color: #434343;' %>
         <%= f.text_area :experience, class: "form-control input-size", rows: 5 %>
 
         <div class='mb-3'>
-          <%= f.label :interest, "Select your interest", class: 'form-label fw-bold mt-3' %>
+          <%= f.label :interest, "Select your interest", class: 'form-label fw-bold mt-3', style: 'color: #434343;' %>
           <%= f.select :interest, options_for_select(['Construction', 'Healthcare', 'Education', 'Manufacturing', 'Entertainment', 'Retail', 'Financial services', 'Other'], resource.interest), { prompt: 'Choose an interest' }, class: 'form-control' %>
         </div>
 
-        <!-- Skills Section -->
         <div class="row">
-          <!-- Technical Skills -->
           <div class="col-md-6">
             <div class='mb-3'>
-              <%= f.label :technical_skills, "Select your Technical Skills", class: 'form-label fw-bold' %>
+              <%= f.label :technical_skills, "Select your Technical Skills", class: 'form-label fw-bold', style: 'color: #434343;' %>
               <% ['Ruby', 'JavaScript', 'Python', 'Java', 'C++', 'HTML', 'CSS', 'SQL'].each do |skill| %>
                 <div class="form-check">
                   <%= f.check_box :skills, { multiple: true, class: 'form-check-input' }, skill, nil %>
-                  <%= f.label :skills, skill, class: 'form-check-label' %>
+                  <%= f.label :skills, skill, class: 'form-check-label', style: 'color: #434343;' %>
                 </div>
               <% end %>
             </div>
           </div>
 
-          <!-- Soft Skills -->
           <div class="col-md-6">
             <div class='mb-3'>
-              <%= f.label :soft_skills, "Select your Soft Skills", class: 'form-label fw-bold' %>
+              <%= f.label :soft_skills, "Select your Soft Skills", class: 'form-label fw-bold', style: 'color: #434343;' %>
               <% ['Presentations', 'Stakeholder Management', 'Team Leadership', 'Time Management', 'Problem Solving'].each do |skill| %>
                 <div class="form-check">
                   <%= f.check_box :skills, { multiple: true, class: 'form-check-input' }, skill, nil %>
-                  <%= f.label :skills, skill, class: 'form-check-label' %>
+                  <%= f.label :skills, skill, class: 'form-check-label', style: 'color: #434343;' %>
                 </div>
               <% end %>
             </div>
@@ -80,37 +77,37 @@
         </div>
 
         <div class="mb-3">
-          <%= f.label :bench, "Are you currently on the bench?", class: 'form-label fw-bold mt-3' %>
+          <%= f.label :bench, "Are you currently on the bench?", class: 'form-label fw-bold mt-3', style: 'color: #434343;' %>
           <div class="form-check">
             <%= f.check_box :bench, { class: 'form-check-input', id: 'bench_checkbox' }, true, false %>
-            <%= f.label :bench_checkbox, "Yes", class: 'form-check-label' %>
+            <%= f.label :bench_checkbox, "Yes", class: 'form-check-label', style: 'color: #434343;' %>
           </div>
         </div>
 
         <div class="mb-3">
-          <%= f.label :password, class: 'form-label fw-bold' %>
+          <%= f.label :password, class: 'form-label fw-bold', style: 'color: #434343;' %>
           <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-          <small>(Leave blank if you don't want to change it)</small>
+          <small style="color: #434343;">(Leave blank if you don't want to change it)</small>
         </div>
 
         <div class="mb-3">
-          <%= f.label :password_confirmation, class: 'form-label fw-bold' %>
+          <%= f.label :password_confirmation, class: 'form-label fw-bold', style: 'color: #434343;' %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
         </div>
 
         <div class="mb-3">
-          <%= f.label :current_password, class: 'form-label fw-bold' %>
+          <%= f.label :current_password, class: 'form-label fw-bold', style: 'color: #434343;' %>
           <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control', required: true %>
-          <small>(We need your current password to confirm your changes)</small>
+          <small style="color: #434343;">(We need your current password to confirm your changes)</small>
         </div>
 
         <div class="actions mt-4 d-grid">
-          <%= f.submit "Update", class: 'btn btn-primary btn-lg' %>
+          <%= f.submit "Update", class: 'btn btn-primary btn-lg', style: "background-color: #3d85c6; border-color: #3d85c6;" %>
         </div>
       <% end %>
 
       <div class="mt-3 text-center">
-        <%= link_to "Delete my profile", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+        <%= link_to "Delete my profile", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger", style: "background-color: #dc3545; border-color: #dc3545;" %>
       </div>
 
     </div>

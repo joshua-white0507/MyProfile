@@ -6,18 +6,14 @@ class UsersController < ApplicationController
     # Search functionality
     if params[:query].present?
       query = "%#{params[:query]}%"
-      @users = @users.where("interest ILIKE ? OR skills::text ILIKE ?", query, query)
-    end 
+      @users = @users.where("name ILIKE ? OR interest ILIKE ? OR skills::text ILIKE ?", query, query, query)
+    end
   
     # Filtering functionality
     @users = @users.where(practice: params[:practice]) if params[:practice].present?
     @users = @users.where(grade: params[:grade]) if params[:grade].present?
     @users = @users.where(bench: ActiveModel::Type::Boolean.new.cast(params[:bench])) if params[:bench].present?
-  
-    # Filter by previous_clients
-    if params[:previous_clients].present?
-      @users = @users.where("previous_clients @> ARRAY[?]::text[]", [params[:previous_clients]])
-    end
+    @users = @users.where("previous_clients @> ARRAY[?]::text[]", [params[:previous_clients]]) if params[:previous_clients].present?
   
     # Sorting functionality
     if params[:sort].present?
@@ -25,7 +21,6 @@ class UsersController < ApplicationController
       @users = @users.order("#{params[:sort]} #{direction}")
     end
   end
-
     # GET /users
     # GET /users.json
 
