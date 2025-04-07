@@ -1,11 +1,31 @@
 class UsersController < ApplicationController
       
   def index
-    if params[:query].present?
-      query = "%#{params[:query]}%"
-      @users = User.where("interest ILIKE ? OR skills::text ILIKE ?", query, query)
-    else
-      @users = User.all
+    query = params[:query].present? ? "%#{params[:query]}%" : nil
+    @users = User.all
+  
+    # Search functionality
+    if query
+      @users = @users.where("interest ILIKE ? OR skills::text ILIKE ?", query, query)
+    end
+  
+    # Filtering functionality
+    if params[:practice].present?
+      @users = @users.where(practice: params[:practice])
+    end
+  
+    if params[:grade].present?
+      @users = @users.where(grade: params[:grade])
+    end
+  
+    if params[:bench].present?
+      @users = @users.where(bench: ActiveModel::Type::Boolean.new.cast(params[:bench]))
+    end
+  
+    # Sorting functionality
+    if params[:sort].present?
+      direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      @users = @users.order("#{params[:sort]} #{direction}")
     end
   end
 
@@ -15,6 +35,8 @@ class UsersController < ApplicationController
     def show
       @user = User.find(params[:id])
     end
+
+
 
     def edit
       # @user is already set by the before_action :set_user
