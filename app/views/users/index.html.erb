@@ -13,17 +13,21 @@
   <div class="mb-4">
     <%= form_with url: users_path, method: :get, local: true, class: "row g-3 align-items-center" do |f| %>
       <div class="col-auto">
-        <%= f.label :practice, "", class: "form-label" %>
+        <%= f.label :practice, "Practice", class: "form-label fw-bold" %>
         <%= f.select :practice, options_for_select(User.distinct.pluck(:practice).compact, params[:practice]), { prompt: "All Practices" }, class: "form-select" %>
       </div>
       <div class="col-auto">
-        <%= f.label :grade, "", class: "form-label" %>
+        <%= f.label :grade, "Grade", class: "form-label fw-bold" %>
         <%= f.select :grade, options_for_select(User.distinct.pluck(:grade).compact, params[:grade]), { prompt: "All Grades" }, class: "form-select" %>
       </div>
       <div class="col-auto">
-      <%= f.label :bench, "", class: "form-label" %>
-      <%= f.select :bench, [["On Bench", true], ["Not on Bench", false]], { selected: params[:bench], prompt: "All Bench Statuses" }, class: "form-select" %>
-    </div>
+        <%= f.label :bench, "Bench Status", class: "form-label fw-bold" %>
+        <%= f.select :bench, [["On Bench", true], ["Not on Bench", false]], { selected: params[:bench], prompt: "All Bench Statuses" }, class: "form-select" %>
+      </div>
+      <div class="col-auto">
+        <%= f.label :previous_clients, "Previous Clients", class: "form-label fw-bold" %>
+        <%= f.select :previous_clients, options_for_select(User.distinct.pluck(:previous_clients).flatten.compact.uniq, params[:previous_clients]), { prompt: "All Clients" }, class: "form-select" %>
+      </div>
       <div class="col-auto">
         <%= f.submit "Filter", class: "btn btn-primary" %>
       </div>

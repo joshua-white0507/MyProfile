@@ -19,6 +19,7 @@
           <p class="card-text"><strong>Email:</strong> <%= @user.email %></p>
           <p class="card-text"><strong>Practice:</strong> <%= @user.practice %></p>
           <p class="card-text"><strong>Grade:</strong> <%= @user.grade %></p>
+          <p class="card-text"><strong>Previous Clients:</strong> <%= @user.previous_clients.is_a?(Array) ? @user.previous_clients.join(', ') : 'No previous clients listed' %></p>
           <p class="card-text"><strong>Skills:</strong> <%= @user.skills&.join(', ') || 'No skills listed' %></p>
           <p class="card-text"><strong>Interest:</strong> <%= @user.interest || 'No interest provided' %></p>
           <p class="card-text"><strong>Experience:</strong> <%= @user.experience || 'No experience provided' %></p>
