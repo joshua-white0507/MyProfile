@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   
   # Bella said to delete as it was causing her problems
   allow_browser versions: :modern
-  
   before_action :authenticate_user!
 
   protected
@@ -13,6 +12,7 @@ class ApplicationController < ActionController::Base
     users_path
   end
   
+
 end
 
 

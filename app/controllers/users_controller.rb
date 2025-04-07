@@ -1,25 +1,22 @@
 class UsersController < ApplicationController
       
   def index
-    query = params[:query].present? ? "%#{params[:query]}%" : nil
     @users = User.all
   
     # Search functionality
-    if query
+    if params[:query].present?
+      query = "%#{params[:query]}%"
       @users = @users.where("interest ILIKE ? OR skills::text ILIKE ?", query, query)
-    end
+    end 
   
     # Filtering functionality
-    if params[:practice].present?
-      @users = @users.where(practice: params[:practice])
-    end
+    @users = @users.where(practice: params[:practice]) if params[:practice].present?
+    @users = @users.where(grade: params[:grade]) if params[:grade].present?
+    @users = @users.where(bench: ActiveModel::Type::Boolean.new.cast(params[:bench])) if params[:bench].present?
   
-    if params[:grade].present?
-      @users = @users.where(grade: params[:grade])
-    end
-  
-    if params[:bench].present?
-      @users = @users.where(bench: ActiveModel::Type::Boolean.new.cast(params[:bench]))
+    # Filter by previous_clients
+    if params[:previous_clients].present?
+      @users = @users.where("previous_clients @> ARRAY[?]::text[]", [params[:previous_clients]])
     end
   
     # Sorting functionality
@@ -40,6 +37,11 @@ class UsersController < ApplicationController
 
     def edit
       # @user is already set by the before_action :set_user
+    end
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:previous_clients => []])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:previous_clients => []])
     end
 
     def set_user
@@ -64,11 +66,17 @@ end
         User.find(params[:id]).destroy
         redirect_to root_url
     end
+
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:previous_clients => []])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:previous_clients => []])
+  end
     
       private
     
       def user_params
-        params.require(:user).permit(:name, :practice, :email, :password, :password_confirmation, :experience, :interest, skills: [])
+        params.require(:user).permit(:name, :practice, :email, :password, :password_confirmation, :experience, :interest, skills: [], previous_clients: [])
       end
 
 
