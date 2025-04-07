@@ -70,15 +70,11 @@
         </div>
 
         <div class="mb-3">
-          <%= f.label :bench, "Are you currently on the bench?", class: 'form-label mt-3' %>
-          <div class="form-check">
-            <%= f.radio_button :bench, true, class: 'form-check-input', id: 'bench_yes' %>
-            <%= f.label :bench_yes, "Yes", class: 'form-check-label' %>
-          </div>
-          <div class="form-check">
-            <%= f.radio_button :bench, false, class: 'form-check-input', id: 'bench_no' %>
-            <%= f.label :bench_no, "No", class: 'form-check-label' %>
-          </div>
+        <%= f.label :bench, "Are you currently on the bench?", class: 'form-label mt-3' %>
+        <div class="form-check">
+        <%= f.check_box :bench, { class: 'form-check-input', id: 'bench_checkbox' }, true, false %>
+        <%= f.label :bench_checkbox, "Yes", class: 'form-check-label' %>
+       </div>
         </div>
 
         <div class="mb-3">

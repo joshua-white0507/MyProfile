@@ -6,19 +6,39 @@
 
   <!-- Search Form -->
   <div class="mb-4">
-    <%= form_with url: users_path, method: :get, local: true, class: "d-flex" do |f| %>
+    <%= form_with url: users_path, method: :get, local: true, class: "d-flex mb-3" do |f| %>
       <%= f.text_field :query, placeholder: "Search by interests or skills", class: "form-control me-2" %>
       <%= f.submit "Search", class: "btn btn-primary" %>
     <% end %>
   </div>
 
+  <!-- Filter Form -->
+  <div class="mb-4">
+    <%= form_with url: users_path, method: :get, local: true, class: "row g-3 align-items-center" do |f| %>
+      <div class="col-auto">
+        <%= f.label :practice, "", class: "form-label" %>
+        <%= f.select :practice, options_for_select(User.distinct.pluck(:practice).compact, params[:practice]), { prompt: "All Practices" }, class: "form-select" %>
+      </div>
+      <div class="col-auto">
+        <%= f.label :grade, "", class: "form-label" %>
+        <%= f.select :grade, options_for_select(User.distinct.pluck(:grade).compact, params[:grade]), { prompt: "All Grades" }, class: "form-select" %>
+      </div>
+      <div class="col-auto">
+      <%= f.label :bench, "", class: "form-label" %>
+      <%= f.select :bench, [["On Bench", true], ["Not on Bench", false]], { selected: params[:bench], prompt: "All Bench Statuses" }, class: "form-select" %>
+    </div>
+      <div class="col-auto">
+        <%= f.submit "Filter", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Practice</th>
-        <th>Grade</th>
+        <th><%= link_to "Name", users_path(sort: "name", direction: toggle_direction(params[:direction])) %></th>
+        <th><%= link_to "Practice", users_path(sort: "practice", direction: toggle_direction(params[:direction])) %></th>
+        <th><%= link_to "Grade", users_path(sort: "grade", direction: toggle_direction(params[:direction])) %></th>
         <th>Bench Status</th>
         <th>Actions</th>
       </tr>
@@ -29,7 +49,7 @@
           <td><%= user.name || 'No name provided' %></td>
           <td><%= user.practice || 'No practice provided' %></td>
           <td><%= user.grade || 'No grade provided' %></td>
-          <td><%= user.bench ? '🚩' : '' %></td>
+          <td><%= user.bench ? '🚩 - On Bench' : '' %></td>
           <td>
             <%= link_to "View Profile", user_path(user), class: 'btn btn-primary btn-sm' %>
           </td>
