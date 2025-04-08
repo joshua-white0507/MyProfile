@@ -7,7 +7,7 @@ User.destroy_all
 practices = [
   'Business Consulting', 'Technology Consulting', 'Design Practice',
   'Delivery Consulting', 'Service Centre', 'Quality Engineering',
-  'Operations and Finance', 'Software Engineering', 'Other'
+  'Operations and Finance', 'Software Engineering'
 ]
 
 grades = (1..9).to_a
@@ -28,7 +28,7 @@ previous_clients = [
 
 interests = [
   'Construction', 'Healthcare', 'Education', 'Manufacturing',
-  'Entertainment', 'Retail', 'Financial services', 'Other'
+  'Entertainment', 'Retail', 'Financial services'
 ]
 
 experience_templates = [
@@ -70,9 +70,10 @@ admin_user.profile_photo.attach(
 
 # Create normal users
 50.times do |i|
-  full_name = Faker::Name.name
-  first_name = full_name.split.first.downcase # Extract the first name and make it lowercase
-  unique_email = "#{first_name}#{i}@solirius.com" # Append a unique number to ensure uniqueness
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  full_name = "#{first_name} #{last_name}"
+  unique_email = "#{first_name.downcase}#{i}@solirius.com" # Append a unique number to ensure uniqueness
 
   user = User.create!(
     email: unique_email, # Use the unique email
