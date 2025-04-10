@@ -2,23 +2,27 @@ class UsersController < ApplicationController
       
   def index
     @users = User.all
-
-    # Search functionality
+  
+    # Search by name, interest, or skills
     if params[:query].present?
-      query = "%#{params[:query]}%"
-      @users = @users.where("name ILIKE ? OR interest ILIKE ? OR skills::text ILIKE ?", query, query, query)
+      @users = @users.where(
+        "name ILIKE :query OR interest ILIKE :query OR skills ILIKE :query",
+        query: "%#{params[:query]}%"
+      )
     end
-
-    # Filtering functionality
+  
+    # Filter by practice
     @users = @users.where(practice: params[:practice]) if params[:practice].present?
+  
+    # Filter by grade
     @users = @users.where(grade: params[:grade]) if params[:grade].present?
+  
+    # Filter by bench status
     @users = @users.where(bench: ActiveModel::Type::Boolean.new.cast(params[:bench])) if params[:bench].present?
-    @users = @users.where("previous_clients @> ARRAY[?]::text[]", [params[:previous_clients]]) if params[:previous_clients].present?
-
-    # Sorting functionality (optional)
-    if params[:sort].present?
-      direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-      @users = @users.order("#{params[:sort]} #{direction}")
+  
+    # Filter by previous clients
+    if params[:previous_clients].present?
+      @users = @users.where("previous_clients ILIKE ?", "%#{params[:previous_clients]}%")
     end
   end
     # GET /users
