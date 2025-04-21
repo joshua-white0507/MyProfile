@@ -33,7 +33,7 @@ gem "bootsnap", require: false
 
 gem 'sassc-rails'
 
-gem 'bootstrap', '~> 5.2', '>= 5.2.3'
+gem 'bootstrap', '~> 5.3'
 
 gem 'devise'
 
